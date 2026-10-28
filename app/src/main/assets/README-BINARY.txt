@@ -1,0 +1,1 @@
+The GitHub Actions workflow builds the open-source cloudflared client for Linux ARMv7, patches Android DNS path compatibility, and places the executable and CA bundle in this assets directory before building the APK.

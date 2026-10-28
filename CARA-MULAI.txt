@@ -1,0 +1,32 @@
+RK TUNNEL 1.0.1 — PANDUAN INDONESIA
+
+APA KEGUNAANNYA?
+APK ini bertugas membuat tunnel publik ke server lokal yang SUDAH berjalan di tablet. Bukan server Node.js lengkap dan bukan pengganti aplikasi RK Server. Untuk server RK yang aktif di port 8080, alamat lokal default aplikasi sudah benar: http://127.0.0.1:8080/
+
+CARA MEMBUAT APK
+1. Unduh ZIP proyek RK-Tunnel-Source.zip dan ekstrak di komputer.
+2. Buat repository GitHub baru bernama rk-tunnel.
+3. Unggah ISI folder hasil ekstrak (bukan ZIP-nya saja) ke akar repository. Pastikan ada app/, build.gradle, settings.gradle, dan .github/workflows/build-apk.yml.
+4. Tab Actions akan menjalankan workflow Build RK Tunnel APK setelah commit. Bila belum, buka workflow lalu tekan Run workflow.
+5. Tunggu sampai proses selesai. Jika hijau, unduh artifact RK-Tunnel-APK dan ekstrak untuk mengambil app-debug.apk.
+6. Pasang APK itu di tablet Advan T2E.
+
+CARA MENGGUNAKAN
+1. Jalankan RK Server yang lama terlebih dahulu. Pastikan server lokal di port 8080 aktif.
+2. Buka RK Tunnel.
+3. Biarkan alamat http://127.0.0.1:8080/ bila RK Server menggunakan port itu.
+4. Tekan AKTIFKAN SERVER PUBLIK.
+5. Tunggu hingga muncul alamat https://....trycloudflare.com. Tekan SALIN LINK PUBLIK.
+6. Tes dari HP lain dengan Wi-Fi dimatikan dan data seluler dinyalakan.
+7. Untuk mengakhiri, tekan MATIKAN TUNNEL.
+
+CATATAN JUJUR DAN PENTING
+- APK final belum dibangun atau diuji langsung di tablet. Proyek ini membuat workflow membangun cloudflared ARMv7 bersama APK; masih harus diuji pada Android 4.4.2.
+- Cloudflare tidak menyediakan build resmi khusus Android 4.4. Executable Linux ARMv7 yang dibundel mungkin tidak dapat dijalankan oleh firmware tablet. Jika demikian, log aplikasi akan memberi tahu kegagalannya; jangan anggap link publik berhasil sebelum diuji dari jaringan lain.
+- Quick Tunnel memberi link sementara dan biasanya link baru setiap mulai ulang. Tunnel perlu tetap berjalan dan tablet harus tersambung internet.
+- Layanan tunnel menggunakan infrastruktur relay Cloudflare. Jadi, ini menghindari pembelian VPS untuk uji coba, tetapi bukan berarti tidak menggunakan layanan pihak ketiga.
+- Jangan memublikasikan layanan yang belum punya login/keamanan, karena siapa pun yang mengetahui link bisa mencoba membukanya.
+
+CATATAN BUILD: Workflow versi diperbaiki menetapkan Java 17 untuk Gradle 8.9. Ini memperbaiki error "Unsupported class file major version 69" yang muncul ketika build memakai Java 25.
+
+PERBAIKAN ANDROID 4.4.2: Versi 1.0.1 tidak lagi memanggil ProcessBuilder.redirectInput(File), karena metode itu baru tersedia pada API 26. Input resolver kini diarahkan melalui /system/bin/sh. Build ulang APK lalu pasang versi baru.

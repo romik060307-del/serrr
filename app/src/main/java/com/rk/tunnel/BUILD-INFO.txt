@@ -1,0 +1,3 @@
+Target app minSdk: 19 (Android 4.4)
+Bundled tunnel program: cloudflared compiled in GitHub Actions from cloudflare/cloudflared tag 2026.10.4 for linux/arm GOARM=7 with CGO_ENABLED=0.
+The executable method, DNS path patch and Quick Tunnel connection have not been tested on Advan T2E firmware. Treat this as an experiment until a real external-network test succeeds.
